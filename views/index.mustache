@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fabric Collection</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <form action="/fabric" method="POST">
+        <label for="">Fabric Name</label>
+        <input type="text" name="name.fabricName"><br>
+        <label for="">Designer Name</label>
+        <input type="text" name="name.designerName"><br>
+        <label for="">Color in Fabric</label>
+        <input type="text" name="color1" required><br>
+        <label for="">Color in Fabric</label>
+        <input type="text" name="color2" required><br>
+        <label for="">Color in Fabric</label>
+        <input type="text" name="color3" required><br>
+        <label for="">Color in Fabric</label>
+        <input type="text" name="color4" required><br>
+        <label for="">Color in Fabric</label>
+        <input type="text" name="color5" required><br>
+        <select type="select" name="material">
+            <option value="silk">Silk</option>
+            <option value="denim">Denim</option>
+            <option value="cotton">Cotton</option>
+            <option value="rayon">Rayon</option>
+            </select><br>
+        <label for="">Number of Yards</label>
+        <input type="number" name="amount"><br>
+        <h2>Is the fabric designated for a project?</h2><br>
+        <label for="true">Yes</label>
+        <input type="radio" name="projectPlanned" value="true" checked required>
+        <label for="false">No</label>
+        <input type="radio" name="projectPlanned" value="false">
+        <br>
+    </form>
+
+
+</body>
+
+</html>

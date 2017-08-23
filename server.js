@@ -2,15 +2,24 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bluebird = require("bluebird");
 const bodyparser = require("body-parser");
+const mustacheExpress = require('mustache-express');
 const logger = require("morgan");
 const Fabric = require("./models/Fabric");
+const path = require("path");
+
 
 const app = express();
 mongoose.Promise = bluebird;
 mongoose.connect("mongodb://localhost:27017/fabric");
 
 app.use(bodyparser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "./public")));
 app.use(logger("dev"));
+
+
+app.engine("mustache", mustacheExpress());
+app.set("views", "./views");
+app.set("view engine", "mustache");
 
 // let fabric1 = {
 //     name: {
@@ -34,6 +43,10 @@ app.use(logger("dev"));
 //     .catch(function (err) {
 //         console.log(err);
 //     });
+
+
+
+//need to res.render (get request) for post mustache file to home
 
 app.post("/fabric", function (req, res) {
     console.log(req.body);
