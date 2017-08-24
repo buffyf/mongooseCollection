@@ -21,97 +21,82 @@ app.engine("mustache", mustacheExpress());
 app.set("views", "./views");
 app.set("view engine", "mustache");
 
-// let fabric1 = {
-//     name: {
-//         designerName: "Martha Stewart",
-//         fabricName: "sunny day"
-//     },
-//     color: ["red", "yellow", "blue", "purple", "green", "white"],
-//     amount: 5,
-//     projectPlanned: false,
-//     material: "cotton",
+////////////////////////////////////////////
 
-// };
-
-// let newFabric = new Fabric(fabric1);
-
-// newFabric
-//     .save()
-//     .then(function (savedFabric) {
-//         console.log("savedFabric: ", savedFabric);
-//     })
-//     .catch(function (err) {
-//         console.log(err);
-//     });
-
-
-
-//need to res.render (get request) for post mustache file to home
-
-app.post("/fabric", function (req, res) {
+app.post("/fabricCollection", function (req, res) {
     console.log(req.body);
     let newFabric = new Fabric(req.body);
 
     newFabric
         .save()
         .then(function (savedFabric) {
-            res.send(savedFabric);
+            res.redirect("/")
         })
         .catch(function (err) {
             res.status(500).send(err);
         });
+
 });
 
-app.get("/fabric", function (req, res) {
+/////////////////////////////////////////////////////////////////////
+
+app.get("/", function (req, res) {
     Fabric.find()
         .then(function (foundFabrics) {
             if (!foundFabrics) {
                 return res.send({ msg: "No fabrics found" });
             }
-
-            res.send(foundFabrics);
+            // res.send(foundFabrics);
+            return res.render("index", { fabric: foundFabrics });
         })
         .catch(function (err) {
             res.status(500).send(err);
         });
 });
 
+
+//////////////////////////////Queries/////////////////////////////////////
 app.get("/fabric/:id", function (req, res) {
     Fabric.findById(req.params.id)
         .then(function (foundFabric) {
             if (!foundFabric) {
                 return res.send({ msg: "No fabric found" });
             }
-
-            res.send(foundFabric);
+            res.render("fabricDetail", { fabric: foundFabric });
         })
         .catch(function (err) {
             res.status(500).send(err);
         });
 });
-
-app.put("/fabric/:id", function (req, res) {
+////////////////////////////////////////////////////////////////////////
+app.post("/fabric/:id", function (req, res) {
     Fabric.findByIdAndUpdate(req.params.id, req.body)
         .then(function (updatedFabric) {
             if (!updatedFabric) {
                 return res.send({ msg: "Could not update fabric" });
             }
 
-            res.send(updatedFabric);
+            // res.send(updatedFabric);
+            let redirectURL =
+                res.redirect(`/fabric/${req.params.id}`);
+        })
+        .catch(function (err) {
+            res.status(500).send(err);
+        });
+});
+//////////////////////////////////////////////////////////////////
+app.delete("/fabric/:id", function (req, res) {
+    Fabric.findByIdAndRemove(req.params.id)
+        .then(function (message) {
+            // res.send(message);
+            return res.redirect("/");
+            console.log("hello");
         })
         .catch(function (err) {
             res.status(500).send(err);
         });
 });
 
-app.delete("/fabric/:id", function (req, res) {
-    Fabric.findByIdAndRemove(req.params.id)
-        .then(function (message) {
-            res.send(message);
-        })
-        .catch(function (err) {
-            res.status(500).send(err);
-        });
-});
+
 
 app.listen(8000, () => console.log("Server running on port 8000!"));

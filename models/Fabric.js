@@ -9,7 +9,7 @@ const FabricSchema = new Schema({
     },
     color: {
         type: Array,
-        required: true
+
     },
     amount: Number,
 

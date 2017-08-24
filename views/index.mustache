@@ -10,22 +10,22 @@
 </head>
 
 <body>
-    <form action="/fabric" method="POST">
+    <form action="/fabricCollection" method="POST">
         <label for="">Fabric Name</label>
         <input type="text" name="name.fabricName"><br>
         <label for="">Designer Name</label>
         <input type="text" name="name.designerName"><br>
         <label for="">Color in Fabric</label>
-        <input type="text" name="color1" required><br>
+        <input type="text" name="color"><br>
         <label for="">Color in Fabric</label>
-        <input type="text" name="color2" required><br>
+        <input type="text" name="color"><br>
         <label for="">Color in Fabric</label>
-        <input type="text" name="color3" required><br>
+        <input type="text" name="color"><br>
         <label for="">Color in Fabric</label>
-        <input type="text" name="color4" required><br>
+        <input type="text" name="color"><br>
         <label for="">Color in Fabric</label>
-        <input type="text" name="color5" required><br>
-        <select type="select" name="material">
+        <input type="text" name="color"><br>
+        <h2>What type of fabric?</h2><select type="select" name="material">
             <option value="silk">Silk</option>
             <option value="denim">Denim</option>
             <option value="cotton">Cotton</option>
@@ -39,7 +39,23 @@
         <label for="false">No</label>
         <input type="radio" name="projectPlanned" value="false">
         <br>
+        <button type="Submit">Add New Fabric</button>
     </form>
+    <hr> {{#fabric}}
+    <div>
+        <a href="/fabric/{{_id}}">
+            <h5>{{name.fabricName}}</h5>
+        </a>
+        <p>Designer Name: {{name.designerName}}</p><br>
+        <p>Fabric Name: {{name.fabricName}}</p><br>
+        <p>Colors in Fabric: {{color}}</p><br>
+        <p>Number of Yards: {{amount}}</p><br>
+        <p>Type of Fabric: {{material}}</p><br>
+        <p>Is Fabric Designated for a Project: {{projectPlanned}}</p><br>
+    </div>
+    <hr>
+    <br> {{/fabric}}
+
 
 
 </body>

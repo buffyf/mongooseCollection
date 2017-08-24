@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fabric Collection</title>
+</head>
+
+<body>
+    {{#fabric}}
+    <div>
+        <p>Designer Name: {{name.designerName}}</p><br>
+        <p>Fabric Name: {{name.fabricName}}</p><br>
+        <p>Colors in Fabric: {{color}}</p><br>
+        <p>Number of Yards: {{amount}}</p><br>
+        <p>Type of Fabric: {{material}}</p><br>
+        <p>Is Fabric Designated for a Project: {{projectPlanned}}</p><br>
+    </div>
+    <br>
+    <hr>
+    <h1>Update Fabric Information</h1>
+    <form action="/fabric/{{_id}}" method="POST">
+        <label for="">Fabric Name</label>
+        <input type="text" name="name.fabricName" value={{name.fabricName}}><br>
+        <label for="">Designer Name</label>
+        <input type="text" name="name.designerName" value={{name.designerName}}><br>
+        <label for="">Color in Fabric</label> {{#color}}
+        <input type="text" name="color" value={{.}}><br> {{/color}}
+        <h2>What type of fabric?</h2><select type="select" name="material" value={{material}}>
+            <option value="silk">Silk</option>
+            <option value="denim">Denim</option>
+            <option value="cotton">Cotton</option>
+            <option value="rayon">Rayon</option>
+            </select><br>
+        <label for="">Number of Yards</label>
+        <input type="number" name="amount" value={{amount}}><br>
+
+
+        <h2>Is the fabric designated for a project?</h2><br> {{#projectPlanned}}
+        <label for="true">Yes</label>
+        <input type="radio" name="projectPlanned" checked>
+        <label for="false">No</label>
+        <input type="radio" name="projectPlanned"> {{/projectPlanned}} {{^projectPlanned}}
+        <label for="true">Yes</label>
+        <input type="radio" name="projectPlanned">
+        <label for="false">No</label>
+        <input type="radio" name="projectPlanned" checked> {{/projectPlanned}}
+        <br>
+        <button type="Submit">Update</button>
+    </form>
+    {{/fabric}}
+
+
+<form action="/" method="DELETE">
+        <button type="Submit">Delete Fabric</button>
+        </form>
+</body>
+
+</html>
