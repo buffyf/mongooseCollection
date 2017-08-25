@@ -9,17 +9,18 @@
 </head>
 
 <body>
-    {{#fabric}}
+    <a href="/">Back to Home</a> {{#fabric}}
     <div>
         <p>Designer Name: {{name.designerName}}</p><br>
         <p>Fabric Name: {{name.fabricName}}</p><br>
-        <p>Colors in Fabric: {{color}}</p><br>
+        <p>Colors in Fabric: {{#color}}{{.}} {{/color}}</p><br>
         <p>Number of Yards: {{amount}}</p><br>
         <p>Type of Fabric: {{material}}</p><br>
-        <p>Is Fabric Designated for a Project: {{projectPlanned}}</p><br>
+        <p>Is Fabric Designated for a Project: {{#projectPlanned}} Yes {{/projectPlanned}}{{^projectPlanned}}No{{/projectPlanned}}</p><br>
     </div>
     <br>
     <hr>
+
     <h1>Update Fabric Information</h1>
     <form action="/fabric/{{_id}}" method="POST">
         <label for="">Fabric Name</label>
@@ -39,23 +40,22 @@
 
 
         <h2>Is the fabric designated for a project?</h2><br> {{#projectPlanned}}
-        <label for="true">Yes</label>
-        <input type="radio" name="projectPlanned" checked>
-        <label for="false">No</label>
-        <input type="radio" name="projectPlanned"> {{/projectPlanned}} {{^projectPlanned}}
-        <label for="true">Yes</label>
-        <input type="radio" name="projectPlanned">
-        <label for="false">No</label>
-        <input type="radio" name="projectPlanned" checked> {{/projectPlanned}}
+        <label for="yescheckbox">Yes</label>
+        <input id="yescheckbox" type="radio" name="projectPlanned" value="true" checked>
+        <label for="nocheckbox">No</label>
+        <input id="nocheckbox" type="radio" name="projectPlanned" value="false"> {{/projectPlanned}} {{^projectPlanned}}
+        <label for="yescheckbox">Yes</label>
+        <input id="yescheckbox" type="radio" name="projectPlanned" value="true">
+        <label for="nocheckbox">No</label>
+        <input id="nocheckbox" type="radio" name="projectPlanned" value="false" checked> {{/projectPlanned}}
         <br>
         <button type="Submit">Update</button>
     </form>
-    {{/fabric}}
+    <form action="/deletefabric/{{_id}}" method="GET">
+        <button type="Submit">Delete Fabric</button> {{/fabric}}
+    </form>
 
 
-<form action="/" method="DELETE">
-        <button type="Submit">Delete Fabric</button>
-        </form>
 </body>
 
 </html>

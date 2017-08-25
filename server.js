@@ -79,18 +79,20 @@ app.post("/fabric/:id", function (req, res) {
             // res.send(updatedFabric);
             let redirectURL =
                 res.redirect(`/fabric/${req.params.id}`);
+
         })
         .catch(function (err) {
             res.status(500).send(err);
         });
 });
 //////////////////////////////////////////////////////////////////
-app.delete("/fabric/:id", function (req, res) {
+app.get("/deletefabric/:id", function (req, res) {
     Fabric.findByIdAndRemove(req.params.id)
-        .then(function (message) {
+        .then(function () {
             // res.send(message);
             return res.redirect("/");
-            console.log("hello");
+
+
         })
         .catch(function (err) {
             res.status(500).send(err);

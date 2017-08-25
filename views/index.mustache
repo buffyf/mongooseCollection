@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h1>Add New Fabric to Collection</h1>
     <form action="/fabricCollection" method="POST">
         <label for="">Fabric Name</label>
         <input type="text" name="name.fabricName"><br>
@@ -17,13 +18,13 @@
         <input type="text" name="name.designerName"><br>
         <label for="">Color in Fabric</label>
         <input type="text" name="color"><br>
-        <label for="">Color in Fabric</label>
+
         <input type="text" name="color"><br>
-        <label for="">Color in Fabric</label>
+
         <input type="text" name="color"><br>
-        <label for="">Color in Fabric</label>
+
         <input type="text" name="color"><br>
-        <label for="">Color in Fabric</label>
+
         <input type="text" name="color"><br>
         <h2>What type of fabric?</h2><select type="select" name="material">
             <option value="silk">Silk</option>
@@ -34,28 +35,29 @@
         <label for="">Number of Yards</label>
         <input type="number" name="amount"><br>
         <h2>Is the fabric designated for a project?</h2><br>
-        <label for="true">Yes</label>
-        <input type="radio" name="projectPlanned" value="true" checked required>
-        <label for="false">No</label>
-        <input type="radio" name="projectPlanned" value="false">
+        <label for="yescheckbox">Yes</label>
+        <input id="yescheckbox" type="radio" name="projectPlanned" value="true" required>
+        <label for="nocheckbox">No</label>
+        <input id="nocheckbox" type="radio" name="projectPlanned" value="false">
         <br>
         <button type="Submit">Add New Fabric</button>
     </form>
-    <hr> {{#fabric}}
+    <hr>
+    <h1>Fabric Collection</h1>
+    {{#fabric}}
     <div>
         <a href="/fabric/{{_id}}">
             <h5>{{name.fabricName}}</h5>
         </a>
         <p>Designer Name: {{name.designerName}}</p><br>
         <p>Fabric Name: {{name.fabricName}}</p><br>
-        <p>Colors in Fabric: {{color}}</p><br>
+        <p>Colors in Fabric: {{#color}}{{.}} {{/color}}</p><br>
         <p>Number of Yards: {{amount}}</p><br>
         <p>Type of Fabric: {{material}}</p><br>
-        <p>Is Fabric Designated for a Project: {{projectPlanned}}</p><br>
+        <p>Is Fabric Designated for a Project: {{#projectPlanned}} Yes {{/projectPlanned}}{{^projectPlanned}}No{{/projectPlanned}}</p><br>
     </div>
     <hr>
     <br> {{/fabric}}
-
 
 
 </body>
