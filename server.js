@@ -46,7 +46,7 @@ app.get("/", function (req, res) {
             if (!foundFabrics) {
                 return res.send({ msg: "No fabrics found" });
             }
-            // res.send(foundFabrics);
+
             return res.render("index", { fabric: foundFabrics });
         })
         .catch(function (err) {
@@ -76,7 +76,7 @@ app.post("/fabric/:id", function (req, res) {
                 return res.send({ msg: "Could not update fabric" });
             }
 
-            // res.send(updatedFabric);
+
             let redirectURL =
                 res.redirect(`/fabric/${req.params.id}`);
 
@@ -101,4 +101,4 @@ app.get("/deletefabric/:id", function (req, res) {
 
 
 
-app.listen(8000, () => console.log("Server running on port 8000!"));
+app.listen(8004, () => console.log("Server running on port 8004!"));

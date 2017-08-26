@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// color, material, amount, pattern, project planned
+
 const FabricSchema = new Schema({
     name: {
         designerName: String,

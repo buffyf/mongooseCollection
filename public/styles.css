@@ -1,3 +1,36 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+    background-color: lightgray;
+}
+
+.input-form {
+    background-color: lavender;
+    padding: 10px;
+    margin: 5px 200px 5px 20px;
+    border: 3px solid gray;
+    border-radius: 10px;
+}
+
+.fabricList {
+    background-color: lavender;
+    text-align: left;
+    padding: 10px;
+    border: 3px solid gray;
+    border-radius: 10px;
+    margin: 50px;
+    line-height: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    color: cadetblue;
+    text-transform: capitalize;
+}
+
+h1 {
+    text-align: center;
+    color: teal;
+}
